@@ -18,6 +18,11 @@ public class Test {
                 "money":56.1
                 }
                 """);
+        generate.setCollectionName("sys_user");
+        generate.setAuthor("ztp");
+        generate.setParentPackage("com.maishi");
+        generate.setModulePackage("test");
+
         autoCode.exec(generate);
     }
 }

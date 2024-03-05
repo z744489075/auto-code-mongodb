@@ -111,7 +111,7 @@ public class Generate {
 
 
     /**
-     * 内部使用
+     * 内部使用,勿定义
     */
     private Table table;
 
