@@ -13,6 +13,7 @@ import freemarker.template.Template;
 import lombok.SneakyThrows;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -39,6 +40,7 @@ public class AutoCode {
 
     public static void exec(Generate generate){
         String jsonString = generate.getJsonString();
+        generate.setDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         JSONObject jsonObject = JSON.parseObject(jsonString);
         Table table=new Table();
         table.setCollectionName(generate.getCollectionName());
@@ -55,7 +57,7 @@ public class AutoCode {
             } else if(v instanceof JSONArray){
 
                 column.setType(ColumnType.array);
-            }else if (v instanceof Double || v instanceof Float ){
+            }else if (v instanceof Double || v instanceof Float|| v instanceof BigDecimal){
                 column.setType(ColumnType.bigDecimal);
             }else if (v instanceof Integer || v instanceof Long){
                 column.setType(ColumnType.number);
@@ -80,7 +82,57 @@ public class AutoCode {
             columnList.add(column);
         });
         generate.setTable(table);
+        Generate.FilePath filePath = generate.getFilePath();
+
+        //bean
         bean(generate);
+
+        //feign
+        String mongodbModule = filePath.getMongodbModule();
+        if(mongodbModule!=null && !mongodbModule.isEmpty()){
+            //如果mongodb的模块名都没有则意味着这个不是一个模块化的工程
+            feign(generate);
+        }
+    }
+
+
+    /**
+     * 生成bean
+     */
+    @SneakyThrows
+    public static void feign(Generate generate){
+        Template template = configuration.getTemplate("feign.ftl");
+        //6.创建Writer对象                   生成的静态资源的地址
+        Generate.FilePath filePath = generate.getFilePath();
+        Table table = generate.getTable();
+        String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
+        String path = filePath.getBasePath();
+        if(filePath.getCommonModule()!=null){
+            path+="/"+filePath.getCommonModule();
+        }
+        if(filePath.getFeignPackage()==null){
+            filePath.setFeignPackage(generate.getParentPackage()+"."+generate.getModulePackage()+".feign");
+        }
+
+        path+="/"+filePath.getFeignPackage().replace(".","/");
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+
+        path+="/"+upperName+"Feign.java";
+        if(!generate.getCover()){
+            file=new File(path);
+            if(file.exists()){
+                System.out.println("文件已经存在,不允许覆盖 path= "+path);
+                return;
+            }
+        }
+        Writer out =new FileWriter(path);
+        template.process(generate,out);
+        System.out.println("Feign地址: "+path);
+        out.close();
+
     }
 
     /**
@@ -106,9 +158,18 @@ public class AutoCode {
         if(!file.exists()){
             file.mkdirs();
         }
+
         path+="/"+upperName+".java";
+        if(!generate.getCover()){
+            file=new File(path);
+            if(file.exists()){
+                System.out.println("文件已经存在,不允许覆盖 path= "+path);
+                return;
+            }
+        }
         Writer out =new FileWriter(path);
         template.process(generate,out);
+        System.out.println("bean地址: "+path);
         out.close();
 
     }

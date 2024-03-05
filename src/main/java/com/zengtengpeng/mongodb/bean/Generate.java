@@ -2,32 +2,32 @@ package com.zengtengpeng.mongodb.bean;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- *  自动生成的bean
-*/
+ * 自动生成的bean
+ */
 @Data
 public class Generate {
 
     /**
      * 需要生成代码的json
-    */
+     */
     private String jsonString;
 
     /**
      * 集合的名称.多个单词请用_分隔
-    */
+     */
     private String collectionName;
     /**
-     *  作者
-     *
+     * 作者
      */
     private String author;
 
 
     /**
-     *  需要生成的父包
+     * 需要生成的父包
      *
      * @author ztp
      * @param null
@@ -37,7 +37,7 @@ public class Generate {
     private String parentPackage;
 
     /**
-     *  需要生成的子包
+     * 需要生成的子包
      *
      * @author ztp
      * @param null
@@ -46,22 +46,30 @@ public class Generate {
      */
     private String modulePackage;
 
+    /**
+     * 是否覆盖生成
+     */
+    private Boolean cover = false;
+
+
+    private String date;
 
 
     /**
      * 文件输出路径
-    */
-    private FilePath filePath=new FilePath();
+     */
+    private FilePath filePath = new FilePath();
+
     /**
      * 路径
      */
     @Data
-    public static class FilePath{
+    public static class FilePath {
 
         /**
-         *  根路径
+         * 根路径
          */
-        private String basePath=System.getProperty("user.dir")+"/src/main/java";
+        private String basePath = System.getProperty("user.dir") + "/src/main/java";
 
         /**
          * mongodb 对应的子model,没有不用填写
@@ -70,7 +78,7 @@ public class Generate {
 
 
         /**
-         *  设置公共模块的包名,没有不用填写
+         * 设置公共模块的包名,没有不用填写
          *
          * @author ztp
          * @param null
@@ -79,7 +87,7 @@ public class Generate {
          */
         private String commonModule;
         /**
-         *  业务层模型,没有不用填写
+         * 业务层模型,没有不用填写
          *
          * @author ztp
          * @param null
@@ -90,7 +98,7 @@ public class Generate {
 
 
         /**
-         *  bean的包,(如果不填写则在对应的子目录下)
+         * bean的包,(如果不填写则在对应的子目录下)
          *
          * @author ztp
          * @param null
@@ -99,7 +107,7 @@ public class Generate {
          */
         private String beanPackage;
         /**
-         *  feign的包(如果不填写则在对应的子目录下)
+         * feign的包(如果不填写则在对应的子目录下)
          *
          * @author ztp
          * @param null
@@ -112,7 +120,7 @@ public class Generate {
 
     /**
      * 内部使用,勿定义
-    */
+     */
     private Table table;
 
 }

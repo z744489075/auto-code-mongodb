@@ -11,21 +11,38 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.math.BigDecimal;
 
+import java.util.List;
+/**
+* author: ${author}
+* date: ${date}
+*/
 @Getter
 @Setter
 public class ${table.businessName?cap_first} {
 
 
+    /**
+    * 主键
+    */
+    private String id;
+
     <#list table.columnList as column>
 
-        /**
-        * ${column.remark}
-        */
-        private <#if column.type==number>Integer<#elseif column.type==bigDecimal>BigDecimal<#elseif column.type==object>Object<#elseif column.type==array>List<Object><#elseif column.type==date>LocalDate<#elseif column.type==datetime>LocalDateTime   </#if> ${column.name};
+
+    /**
+    * ${column.name}:${column.remark}
+    */
+    <#if column.type=="datetime">
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    </#if>
+    private <#if column.type=="number">Integer<#rt>
+            <#t><#elseif column.type=="bigDecimal">BigDecimal<#rt>
+            <#t><#elseif column.type=="object">Object<#rt>
+            <#t><#elseif column.type=="array">List<Object><#rt>
+            <#t><#elseif column.type=="date">LocalDate<#rt>
+            <#t><#elseif column.type=="datetime">LocalDateTime<#rt>
+            <#t><#elseif column.type=="text">String</#if><#rt> ${column.name};
     </#list>
 
-        @Transient
-        @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        private LocalDateTime endCreateTime;
 }
