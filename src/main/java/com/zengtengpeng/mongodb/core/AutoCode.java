@@ -7,14 +7,12 @@ import com.zengtengpeng.mongodb.bean.Generate;
 import com.zengtengpeng.mongodb.bean.Table;
 import com.zengtengpeng.mongodb.enums.ColumnType;
 import com.zengtengpeng.mongodb.utils.MyStringUtils;
+import freemarker.cache.FileTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.SneakyThrows;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.Writer;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +26,12 @@ public class AutoCode {
     static {
 
         //2.设置模板所在的目录
-        configuration.setClassLoaderForTemplateLoading(AutoCode.class.getClassLoader(),"/resources/mongodb");
+        try {
+            FileTemplateLoader templates = new FileTemplateLoader(new File(AutoCode.class.getClassLoader().getResource("mongodb").getPath()));
+            configuration.setTemplateLoader(templates);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //3.设置字符集
         configuration.setDefaultEncoding("utf-8");
     }
@@ -99,6 +102,10 @@ public class AutoCode {
         }
 
         path+="/"+filePath.getBeanPackage().replace(".","/");
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
         path+="/"+upperName+".java";
         Writer out =new FileWriter(path);
         template.process(generate,out);

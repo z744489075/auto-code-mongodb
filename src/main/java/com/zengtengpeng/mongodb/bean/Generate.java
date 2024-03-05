@@ -51,7 +51,7 @@ public class Generate {
     /**
      * 文件输出路径
     */
-    private FilePath filePath;
+    private FilePath filePath=new FilePath();
     /**
      * 路径
      */
@@ -61,7 +61,7 @@ public class Generate {
         /**
          *  根路径
          */
-        private String basePath=System.getProperty("user.dir");
+        private String basePath=System.getProperty("user.dir")+"/src/main/java";
 
         /**
          * mongodb 对应的子model,没有不用填写
