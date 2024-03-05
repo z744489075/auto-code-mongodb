@@ -1,10 +1,10 @@
-package ${feignPackage};
+package ${filePath.feignPackage};
 
 
 import com.zengtengpeng.mongodb.bean.MongoPage;
 import com.zengtengpeng.mongodb.bean.Req;
 import com.zengtengpeng.mongodb.bean.Res;
-import com.maishi.bean.socket_mongodb.${table.businessName?cap_first};
+import ${parentPackage}.${modulePackage}.${table.businessName?cap_first};
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +15,7 @@ import java.util.List;
 * author: ztp
 * date: 2024-03-05 11:11:11
 */
-@FeignClient(value = "${mongodbModule}", path = "/api/${table.businessName}", contextId = "${table.businessName}Feign")
+@FeignClient(value = "${filePath.mongodbModule}", path = "/api/${table.businessName}", contextId = "${table.businessName}Feign")
 public interface ${table.businessName?cap_first}Feign {
 
 
