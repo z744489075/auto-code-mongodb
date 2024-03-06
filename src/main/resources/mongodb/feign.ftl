@@ -4,7 +4,7 @@ package ${filePath.feignPackage};
 import com.zengtengpeng.mongodb.bean.MongoPage;
 import com.zengtengpeng.mongodb.bean.Req;
 import com.zengtengpeng.mongodb.bean.Res;
-import ${parentPackage}.${modulePackage}.${table.businessName?cap_first};
+import ${filePath.beanPackage}.${table.businessName?cap_first};
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -75,5 +75,12 @@ public interface ${table.businessName?cap_first}Feign {
         */
         @PostMapping("updateById")
         public Res<Long> updateById(@RequestBody Req<${table.businessName?cap_first}> req);
+
+
+        /**
+        * 根据id更新(只更新一条)
+        */
+        @PostMapping("updateOneById")
+        public Res<Long> updateOneById(@RequestBody Req<${table.businessName?cap_first}> req);
 
 }

@@ -93,6 +93,81 @@ public class AutoCode {
             //如果mongodb的模块名都没有则意味着这个不是一个模块化的工程
             feign(generate);
         }
+
+        //service
+        service(generate);
+
+        //serviceImpl
+        serviceImpl(generate);
+    }
+
+
+    /**
+     * 生成serviceImpl
+     */
+    @SneakyThrows
+    public static void serviceImpl(Generate generate){
+        Template template = configuration.getTemplate("serviceImpl.ftl");
+        //6.创建Writer对象                   生成的静态资源的地址
+        Generate.FilePath filePath = generate.getFilePath();
+        Table table = generate.getTable();
+        String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
+        String path = filePath.getBasePath();
+
+
+        path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".service.impl").replace(".","/");
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+
+        path+="/"+upperName+"ServiceImpl.java";
+        if(!generate.getCover()){
+            file=new File(path);
+            if(file.exists()){
+                System.out.println("文件已经存在,不允许覆盖 path= "+path);
+                return;
+            }
+        }
+        Writer out =new FileWriter(path);
+        template.process(generate,out);
+        System.out.println("ServiceImpl地址: "+path);
+        out.close();
+
+    }
+
+    /**
+     * 生成service
+     */
+    @SneakyThrows
+    public static void service(Generate generate){
+        Template template = configuration.getTemplate("service.ftl");
+        //6.创建Writer对象                   生成的静态资源的地址
+        Generate.FilePath filePath = generate.getFilePath();
+        Table table = generate.getTable();
+        String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
+        String path = filePath.getBasePath();
+
+
+        path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".service").replace(".","/");
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+
+        path+="/"+upperName+"Service.java";
+        if(!generate.getCover()){
+            file=new File(path);
+            if(file.exists()){
+                System.out.println("文件已经存在,不允许覆盖 path= "+path);
+                return;
+            }
+        }
+        Writer out =new FileWriter(path);
+        template.process(generate,out);
+        System.out.println("Service地址: "+path);
+        out.close();
+
     }
 
 
