@@ -5,11 +5,15 @@
 这个项目提供了基于json的形式生成代码的增删改差,减少自己书写CURD的工作量.
 开箱即用.无任何代码入侵
 
-#### 软件架构
+#### 软件使用的技术
+
 maven
+
 spring boot
+
 spring mongodb
 
+freemarker
 
 #### 使用说明
 
