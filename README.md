@@ -87,4 +87,4 @@ controller地址: D:\resource\workspace\auto-code-mongodb/demo/src/main/java/com
 ```
 
 
-4. 当然你也可以自定义模板,在 resources/mongodb 创建对应的模板. 具体模板参考代码中的模板. 使用的是 freemarker 引擎
+4. 当然你也可以自定义模板,在自己的项目 resources/mongodb 创建对应的模板. 具体模板参考源代码中的模板. 使用的是 freemarker 引擎
