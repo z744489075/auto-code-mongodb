@@ -9,13 +9,8 @@ import java.util.Properties;
 public class DemoApplication {
 
     public static void main(String[] args) {
-        //SpringApplication.run(DemoApplication.class, args);
-        String property = System.getProperty("user.dir");
-        Properties properties = System.getProperties();
-        properties.forEach((k,v)->{
+        SpringApplication.run(DemoApplication.class, args);
 
-            System.out.println(k+"="+v);
-        });
     }
 
 }
