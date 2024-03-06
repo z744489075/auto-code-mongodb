@@ -30,7 +30,7 @@ public interface ${table.businessName?cap_first}Feign {
         * 批量新增
         */
         @PostMapping("insertBatch")
-        Req<List<${table.businessName?cap_first}>> insertBatch(@RequestBody Req<List<${table.businessName?cap_first}>> req);
+        Res<List<${table.businessName?cap_first}>> insertBatch(@RequestBody Req<List<${table.businessName?cap_first}>> req);
 
         /**
         * 根据id查询
@@ -60,7 +60,7 @@ public interface ${table.businessName?cap_first}Feign {
          * 保存
          */
          @PostMapping("save")
-         Req<${table.businessName?cap_first}> save(@RequestBody Req<${table.businessName?cap_first}> req);
+         Res<${table.businessName?cap_first}> save(@RequestBody Req<${table.businessName?cap_first}> req);
 
 
         /**

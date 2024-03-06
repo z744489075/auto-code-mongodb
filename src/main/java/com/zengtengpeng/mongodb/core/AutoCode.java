@@ -99,6 +99,43 @@ public class AutoCode {
 
         //serviceImpl
         serviceImpl(generate);
+
+        //controller
+        controller(generate);
+    }
+
+    /**
+     * 生成 controller
+     */
+    @SneakyThrows
+    public static void controller(Generate generate){
+        Template template = configuration.getTemplate("controller.ftl");
+        //6.创建Writer对象                   生成的静态资源的地址
+        Generate.FilePath filePath = generate.getFilePath();
+        Table table = generate.getTable();
+        String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
+        String path = filePath.getBasePath();
+
+
+        path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".controller").replace(".","/");
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+
+        path+="/"+upperName+"Controller.java";
+        if(!generate.getCover()){
+            file=new File(path);
+            if(file.exists()){
+                System.out.println("文件已经存在,不允许覆盖 path= "+path);
+                return;
+            }
+        }
+        Writer out =new FileWriter(path);
+        template.process(generate,out);
+        System.out.println("controller地址: "+path);
+        out.close();
+
     }
 
 
