@@ -73,7 +73,7 @@ public class Generate {
         /**
          * 根路径
          */
-        private String basePath = System.getProperty("user.dir") + "/src/main/java";
+        private String basePath = System.getProperty("user.dir");
 
         /**
          * mongodb 对应的子model,没有不用填写

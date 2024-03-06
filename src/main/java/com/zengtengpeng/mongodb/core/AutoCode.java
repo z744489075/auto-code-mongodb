@@ -126,7 +126,7 @@ public class AutoCode {
         if(filePath.getBusinessModule()!=null){
             path+="/"+filePath.getBusinessModule();
         }
-
+        path+="/src/main/java";
         path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".controller").replace(".","/");
         File file = new File(path);
         if(!file.exists()){
@@ -159,7 +159,11 @@ public class AutoCode {
         Table table = generate.getTable();
         String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
         String path = filePath.getBasePath();
-
+        String mongodbModule = filePath.getMongodbModule();
+        if(mongodbModule!=null){
+            path+="/"+mongodbModule;
+        }
+        path+="/src/main/java";
 
         path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".controller").replace(".","/");
         File file = new File(path);
@@ -195,7 +199,11 @@ public class AutoCode {
         Table table = generate.getTable();
         String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
         String path = filePath.getBasePath();
-
+        String mongodbModule = filePath.getMongodbModule();
+        if(mongodbModule!=null){
+            path+="/"+mongodbModule;
+        }
+        path+="/src/main/java";
 
         path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".service.impl").replace(".","/");
         File file = new File(path);
@@ -229,7 +237,11 @@ public class AutoCode {
         Table table = generate.getTable();
         String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
         String path = filePath.getBasePath();
-
+        String mongodbModule = filePath.getMongodbModule();
+        if(mongodbModule!=null){
+            path+="/"+mongodbModule;
+        }
+        path+="/src/main/java";
 
         path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".service").replace(".","/");
         File file = new File(path);
@@ -267,6 +279,7 @@ public class AutoCode {
         if(filePath.getCommonModule()!=null){
             path+="/"+filePath.getCommonModule();
         }
+        path+="/src/main/java";
         if(filePath.getFeignPackage()==null){
             filePath.setFeignPackage(generate.getParentPackage()+"."+generate.getModulePackage()+".feign");
         }
@@ -306,6 +319,7 @@ public class AutoCode {
         if(filePath.getCommonModule()!=null){
             path+="/"+filePath.getCommonModule();
         }
+        path+="/src/main/java";
         if(filePath.getBeanPackage()==null){
             filePath.setBeanPackage(generate.getParentPackage()+"."+generate.getModulePackage()+".bean");
         }

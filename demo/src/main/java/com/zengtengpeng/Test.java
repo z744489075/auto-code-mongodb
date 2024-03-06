@@ -43,7 +43,7 @@ public class Test {
         // 业务模块,如果没有可不填写
 //        filePath.setBusinessModule("iot-bg-api");
         //根路径
-        filePath.setBasePath(System.getProperty("user.dir")+"/demo/src/main/java");
+        filePath.setBasePath(System.getProperty("user.dir")+"/demo");
 
         autoCode.exec(generate);
     }
