@@ -13,8 +13,9 @@ import java.math.BigDecimal;
 
 import java.util.List;
 /**
-* author: ${author}
-* date: ${date}
+ * ${remark}
+ * author: ${author}
+ * date: ${date}
 */
 @Getter
 @Setter

@@ -24,6 +24,10 @@ public class Generate {
      * 作者
      */
     private String author;
+    /**
+     * 注释
+     */
+    private String remark;
 
 
     /**

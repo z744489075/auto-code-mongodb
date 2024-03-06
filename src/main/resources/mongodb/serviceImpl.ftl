@@ -17,6 +17,12 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+
+/**
+* ${remark}
+* author: ${author}
+* date: ${date}
+*/
 @Service
 public class ${table.businessName?cap_first}ServiceImpl implements ${table.businessName?cap_first}Service {
 

@@ -28,6 +28,7 @@ public class Test {
                 """);
         //集合名称
         generate.setCollectionName("sys_user");
+        generate.setRemark("用户表");
         //作者
         generate.setAuthor("ztp");
         //父包
@@ -39,6 +40,8 @@ public class Test {
         //filePath.setMongodbModule("iot-socket-mongodb");
         //todo 公共模块,如果没有可不填写
         //filePath.setCommonModule("iot-common");
+        //todo 业务模块,如果没有可不填写
+//        filePath.setBusinessModule("iot-bg-api");
         //根路径
         filePath.setBasePath(System.getProperty("user.dir")+"/demo/src/main/java");
 

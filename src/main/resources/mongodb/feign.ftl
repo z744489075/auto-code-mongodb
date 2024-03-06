@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 /**
-* author: ztp
-* date: 2024-03-05 11:11:11
+* ${remark}
+* author: ${author}
+* date: ${date}
 */
 @FeignClient(value = "${filePath.mongodbModule}", path = "/api/${table.businessName}", contextId = "${table.businessName}Feign")
 public interface ${table.businessName?cap_first}Feign {

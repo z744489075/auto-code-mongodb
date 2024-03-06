@@ -7,6 +7,12 @@ import ${filePath.beanPackage}.${table.businessName?cap_first};
 import java.util.Collection;
 import java.util.List;
 
+
+/**
+* ${remark}
+* author: ${author}
+* date: ${date}
+*/
 public interface ${table.businessName?cap_first}Service {
 
         /**

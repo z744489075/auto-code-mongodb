@@ -6,6 +6,7 @@ import com.zengtengpeng.mongodb.bean.Req;
 import com.zengtengpeng.mongodb.bean.Res;
 import ${filePath.beanPackage}.${table.businessName?cap_first};
 import ${parentPackage}.${modulePackage}.service.${table.businessName?cap_first}Service;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,19 +21,19 @@ import java.util.List;
 * date: ${date}
 */
 @RestController
-@RequestMapping("/api/${table.businessName}")
+@RequestMapping("/${table.businessName}")
+@Slf4j
 public class ${table.businessName?cap_first}Controller {
 
     @Autowired
-    private ${table.businessName?cap_first}Service ${table.businessName}Service;
+    private ${table.businessName?cap_first}Feign ${table.businessName}Feign;
 
     /**
      * 新增
      */
     @PostMapping("insert")
     public Res<${table.businessName?cap_first}> insert(@RequestBody Req<${table.businessName?cap_first}> req) {
-        ${table.businessName?cap_first} udpUpMessage = req.getData();
-        return Res.success(${table.businessName}Service.insert(udpUpMessage));
+        return ${table.businessName}Feign.insert(req);
     }
 
     /**
@@ -42,7 +43,7 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("insertBatch")
     public Res<List<${table.businessName?cap_first}>> insertBatch(@RequestBody Req<List<${table.businessName?cap_first}>> req) {
-        return Res.success(${table.businessName}Service.insertBatch(req.getData()));
+        return ${table.businessName}Feign.insertBatch(req);
     }
 
     /**
@@ -50,7 +51,7 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("getId")
     Res<${table.businessName?cap_first}> getId(@RequestBody Req<String> req) {
-        return Res.success(${table.businessName}Service.getId(req.getData()));
+        return ${table.businessName}Feign.getId(req);
     }
 
     /**
@@ -58,7 +59,7 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("count")
     Res<Long> count(@RequestBody Req<${table.businessName?cap_first}> req) {
-        return Res.success(${table.businessName}Service.count(req.getData()));
+        return ${table.businessName}Feign.count(req);
     }
 
     /**
@@ -66,7 +67,7 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("page")
     Res<MongoPage<${table.businessName?cap_first}>> page(@RequestBody Req<${table.businessName?cap_first}> req) {
-        return Res.success(${table.businessName}Service.page(req));
+        return ${table.businessName}Feign.page(req);
     }
 
     /**
@@ -74,7 +75,7 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("getOne")
     Res<${table.businessName?cap_first}> getOne(@RequestBody Req<${table.businessName?cap_first}> req) {
-        return Res.success(${table.businessName}Service.getOne(req.getData()));
+        return ${table.businessName}Feign.getOne(req);
     }
 
     /**
@@ -82,7 +83,7 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("save")
     Res<${table.businessName?cap_first}> save(@RequestBody Req<${table.businessName?cap_first}> req) {
-        return Res.success(${table.businessName}Service.save(req.getData()));
+        return ${table.businessName}Feign.save(req);
     }
 
     /**
@@ -90,7 +91,7 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("list")
     public Res<List<${table.businessName?cap_first}>> list(@RequestBody Req<${table.businessName?cap_first}> req) {
-        return Res.success(${table.businessName}Service.list(req.getData()));
+        return ${table.businessName}Feign.list(req);
     }
 
     /**
@@ -98,14 +99,15 @@ public class ${table.businessName?cap_first}Controller {
      */
     @PostMapping("updateById")
     public Res<Long> updateById(@RequestBody Req<${table.businessName?cap_first}> req) {
-        return Res.success(${table.businessName}Service.updateById(req.getData()));
+        return ${table.businessName}Feign.updateById(req);
     }
 
     /**
-    * 根据id更新(只更新一条)
+    * 根据id更新
     */
     @PostMapping("updateOneById")
     public Res<Long> updateOneById(@RequestBody Req<${table.businessName?cap_first}> req) {
-        return Res.success(${table.businessName}Service.updateOneById(req.getData()));
+        return ${table.businessName}Feign.updateOneById(req);
     }
+
 }

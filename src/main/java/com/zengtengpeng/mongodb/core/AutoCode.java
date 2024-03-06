@@ -102,6 +102,50 @@ public class AutoCode {
 
         //controller
         controller(generate);
+
+
+        //bizController
+        String businessModule = filePath.getBusinessModule();
+        if(businessModule!=null && !businessModule.isEmpty()){
+            //如果biz的模块名都没有则意味着这个不是一个模块化的工程
+            bizController(generate);
+        }
+    }
+
+    /**
+     * 生成业务controller
+     */
+    @SneakyThrows
+    public static void bizController(Generate generate){
+        Template template = configuration.getTemplate("bizController.ftl");
+        //6.创建Writer对象                   生成的静态资源的地址
+        Generate.FilePath filePath = generate.getFilePath();
+        Table table = generate.getTable();
+        String upperName = MyStringUtils.firstUpperCase(table.getBusinessName());
+        String path = filePath.getBasePath();
+        if(filePath.getBusinessModule()!=null){
+            path+="/"+filePath.getBusinessModule();
+        }
+
+        path+="/"+(generate.getParentPackage()+"."+generate.getModulePackage()+".controller").replace(".","/");
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+
+        path+="/"+upperName+"Controller.java";
+        if(!generate.getCover()){
+            file=new File(path);
+            if(file.exists()){
+                System.out.println("文件已经存在,不允许覆盖 path= "+path);
+                return;
+            }
+        }
+        Writer out =new FileWriter(path);
+        template.process(generate,out);
+        System.out.println("biz Controller地址: "+path);
+        out.close();
+
     }
 
     /**
@@ -137,6 +181,7 @@ public class AutoCode {
         out.close();
 
     }
+
 
 
     /**
