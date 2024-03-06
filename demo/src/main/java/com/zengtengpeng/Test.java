@@ -36,11 +36,11 @@ public class Test {
         //子包
         generate.setModulePackage("test");
         Generate.FilePath filePath = generate.getFilePath();
-        //todo mongodb的子模块,如果没有可不填写
+        // mongodb的子模块,如果没有可不填写
         //filePath.setMongodbModule("iot-socket-mongodb");
-        //todo 公共模块,如果没有可不填写
+        // 公共模块,如果没有可不填写
         //filePath.setCommonModule("iot-common");
-        //todo 业务模块,如果没有可不填写
+        // 业务模块,如果没有可不填写
 //        filePath.setBusinessModule("iot-bg-api");
         //根路径
         filePath.setBasePath(System.getProperty("user.dir")+"/demo/src/main/java");
