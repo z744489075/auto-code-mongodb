@@ -13,6 +13,23 @@ public class Generate {
 
     /**
      * 需要生成代码的json
+     *
+     * 列:
+     * {
+     * "money":56.1,
+     * "name":"张三",
+     * "date":"2024-01-01",
+     * "datetime":"2024-01-01 23:23:23",
+     * "age":5,
+     * "object":{
+     *     "ddd":123
+     * },
+     * "arrays":[
+     *     {
+     *     "names":"123"
+     *     }
+     * ]
+     * }
      */
     private String jsonString;
 
