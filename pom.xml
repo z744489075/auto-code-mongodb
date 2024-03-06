@@ -4,8 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zengtengpeng</groupId>
     <artifactId>auto-code-mongodb</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>auto-code-mongodb</name>
+    <url>https://github.com/z744489075/auto-code-mongodb</url>
     <description>auto-code-mongodb</description>
     <properties>
         <java.version>8</java.version>
@@ -45,9 +46,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git@gitee.com:ztp/auto-code-mongodb.git</connection>
-        <developerConnection>scm:git@gitee.com:ztp/auto-code-mongodb.git</developerConnection>
-        <url>https://gitee.com/ztp/auto-code-mongodb</url>
+        <connection>https://github.com/z744489075/auto-code-mongodb.git</connection>
+        <developerConnection>https://github.com/z744489075/auto-code-mongodb.git</developerConnection>
+        <url>https://github.com/z744489075/auto-code-mongodb</url>
     </scm>
     <build>
         <plugins>
