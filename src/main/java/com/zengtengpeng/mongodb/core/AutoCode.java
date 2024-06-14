@@ -61,6 +61,8 @@ public class AutoCode {
                 column.setType(ColumnType.bigDecimal);
             }else if (v instanceof Integer || v instanceof Long){
                 column.setType(ColumnType.number);
+            }else if (v instanceof Boolean){
+                column.setType(ColumnType.bool);
             }else {
                 column.setType(ColumnType.text);
                 try {

@@ -14,6 +14,7 @@ public class Test {
                 "money":56.1,
                 "name":"张三",
                 "date":"2024-01-01",
+                "ffff":true,
                 "datetime":"2024-01-01 23:23:23",
                 "age":5,
                 "object":{

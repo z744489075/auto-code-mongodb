@@ -21,6 +21,9 @@ import java.util.List;
 @Setter
 public class ${table.businessName?cap_first} {
 
+    /**
+        ${jsonString}
+    */
 
     /**
     * 主键
@@ -43,6 +46,7 @@ public class ${table.businessName?cap_first} {
             <#t><#elseif column.type=="array">List<Object><#rt>
             <#t><#elseif column.type=="date">LocalDate<#rt>
             <#t><#elseif column.type=="datetime">LocalDateTime<#rt>
+            <#t><#elseif column.type=="bool">Boolean<#rt>
             <#t><#elseif column.type=="text">String</#if><#rt> ${column.name};
     </#list>
 
